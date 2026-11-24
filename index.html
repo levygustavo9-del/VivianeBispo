@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FBF7F2">
+  <meta name="description"
+    content="Sobrancelhas, micropigmentação, depilação e tratamento de estrias com Viviane Bispo, em Rio Largo, Alagoas.">
+  <title>Viviane Bispo Estética | Rio Largo, AL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="header-inner">
+      <a class="brand" href="#inicio" aria-label="Viviane Bispo Estética, início">
+        <img src="src/logo_viviane_bispo_transparente.png" alt="Viviane Bispo Estética">
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"
+        aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+      <nav class="primary-navigation" id="primary-navigation" aria-label="Navegação principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#antes-depois">Antes e depois</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#depoimentos" data-optional-nav="depoimentos" hidden>Depoimentos</a>
+        <a href="#espaco" data-optional-nav="espaco" hidden>O espaço</a>
+        <a href="#atendimento">Atendimento</a>
+        <a href="#localizacao">Localização</a>
+        <a class="button button-small header-book" data-whatsapp="general" href="#">Agendar <span
+            aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="hero-copy-inner">
+          <p class="eyebrow eyebrow-light"><span></span> Beleza com cuidado e intenção</p>
+          <h1 id="hero-title"><span class="hero-title-line">Seu olhar já é</span> único! <em>Destaque o que é seu.</em></h1>
+          <p class="hero-description">Sobrancelhas, micropigmentação, depilação e cuidados com estrias em Rio Largo,
+            Alagoas.</p>
+          <a class="button button-light" href="#servicos">Conhecer os serviços <span aria-hidden="true">→</span></a>
+        </div>
+        <span class="hero-side-note" aria-hidden="true">Cuidado que valoriza sua beleza</span>
+      </div>
+      <div class="hero-photo">
+        <img src="src/profissional-hero.webp"
+          alt="Viviane Bispo, profissional de estética" fetchpriority="high" width="2048" height="2048">
+        <span class="photo-frame" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <section class="intro-strip" aria-label="Informações sobre o atendimento">
+      <div class="intro-item"><span class="intro-mark" aria-hidden="true">✳</span><span><strong>Mais de 10
+            anos</strong><small>de atuação</small></span></div>
+      <span class="strip-divider" aria-hidden="true"></span>
+      <div class="intro-item"><span class="intro-mark" aria-hidden="true">⌖</span><span><strong>Rio Largo,
+            AL</strong><small>perto de você</small></span></div>
+      <span class="strip-divider" aria-hidden="true"></span>
+      <div class="intro-item"><span class="intro-mark" aria-hidden="true">◷</span><span><strong>Hora
+            marcada</strong><small>atenção para você</small></span></div>
+    </section>
+
+    <section class="emotional-banner" aria-label="Mensagem de inspiração">
+      <picture>
+        <source media="(max-width: 640px)" srcset="src/parallax-mobile.png">
+        <img src="src/efeito-parallax.webp" alt="" loading="eager" decoding="async" fetchpriority="high" width="1983" height="793">
+      </picture>
+      <div class="emotional-banner-overlay" aria-hidden="true"></div>
+      <div class="emotional-banner-content reveal">
+        <p class="eyebrow eyebrow-light"><span></span> Realce, não transformação</p>
+        <blockquote>Realce a sua<br><em>beleza natural.</em></blockquote>
+      </div>
+    </section>
+
+    <section class="section services-section" id="servicos" aria-labelledby="services-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow"><span></span> Cuidado sob medida</p>
+          <h2 id="services-title">Serviços e <em>procedimentos.</em></h2>
+        </div>
+        <p class="section-intro">Conheça as modalidades e descubra como cada cuidado pode atender ao que você procura.</p>
+      </div>
+      <div class="service-tabs" role="tablist" aria-label="Escolha uma modalidade"></div>
+      <div class="service-panel" id="service-panel" role="tabpanel" aria-live="polite">
+        <div class="service-layout">
+          <div class="service-copy">
+            <p class="eyebrow service-kicker"><span></span><span id="service-count"></span></p>
+            <h3 id="service-name"></h3>
+            <p id="service-description"></p>
+            <button class="text-link service-details-button" id="service-details-button" type="button">Conhecer procedimento <span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="service-info" aria-label="Informações do procedimento">
+            <div class="service-info-image" aria-label="Espaço reservado para imagem do procedimento">
+              <img id="service-info-image" src="" alt="" loading="lazy" hidden>
+              <span class="service-image-placeholder" aria-hidden="true">Imagem do procedimento</span>
+            </div>
+            <span class="service-info-label">Cuidado personalizado</span>
+            <span id="service-purpose"></span>
+          </div>
+          <a class="button button-primary service-book" id="service-book" href="#" data-whatsapp="service">Agendar <span
+              class="service-book-label"></span> <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <p class="section-footnote">Cada procedimento é personalizado após avaliação individual.</p>
+    </section>
+
+    <section class="section before-after-section" id="antes-depois" aria-labelledby="before-after-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow"><span></span> Antes e depois</p>
+          <h2 id="before-after-title">Resultados <em>reais.</em></h2>
+        </div>
+        <p class="section-intro">Compare a transformação com os controles existentes e conheça a experiência de cada atendimento.</p>
+      </div>
+      <div class="before-after-grid" id="before-after-grid"></div>
+      <p class="section-footnote">Os resultados correspondem às imagens reais disponíveis neste portfólio.</p>
+    </section>
+
+    <section class="section differences-section" id="diferenciais" aria-labelledby="differences-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow eyebrow-light"><span></span> O que faz a diferença</p>
+          <h2 id="differences-title">Cuidado em cada <em>detalhe.</em></h2>
+        </div>
+        <p class="section-intro">Uma experiência pensada para acolher suas escolhas, respeitar seu tempo e cuidar de
+          cada etapa.</p>
+      </div>
+      <div class="difference-grid">
+        <article class="difference-card reveal">
+          <span class="difference-number">01</span><span class="difference-icon" aria-hidden="true">✳</span>
+          <h3>Experiência que escuta</h3>
+          <p>Mais de uma década de atuação, com atenção ao que combina com você.</p>
+        </article>
+        <article class="difference-card reveal">
+          <span class="difference-number">02</span><span class="difference-icon" aria-hidden="true">◇</span>
+          <h3>Escolhas com calma</h3>
+          <p>Quatro modalidades para conversar sobre cuidados de sobrancelhas e pele.</p>
+        </article>
+        <article class="difference-card reveal">
+          <span class="difference-number">03</span><span class="difference-icon" aria-hidden="true">◷</span>
+          <h3>Um tempo só seu</h3>
+          <p>O agendamento prévio ajuda a preparar um atendimento com atenção.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section testimonials-section" id="depoimentos" aria-labelledby="testimonials-title" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span></span> Experiências</p>
+          <h2 id="testimonials-title">Beleza que conta <em>histórias.</em></h2>
+        </div>
+        <p class="section-intro">Relatos de clientes publicados com autorização.</p>
+      </div>
+      <div class="testimonial-content" id="testimonial-content"></div>
+    </section>
+
+    <section class="journey-section" id="atendimento" aria-labelledby="journey-title">
+      <div class="journey-inner">
+        <div class="journey-heading reveal">
+          <p class="eyebrow"><span></span> Sua experiência</p>
+          <h2 id="journey-title">Uma jornada simples, do primeiro contato ao <em>encontro.</em></h2>
+          <p>Você escolhe o que deseja conhecer. A conversa acontece no seu tempo.</p>
+        </div>
+        <ol class="journey-list">
+          <li class="journey-step reveal"><span class="step-number">01</span>
+            <div>
+              <h3>Escolha uma modalidade</h3>
+              <p>Conheça os serviços e escolha o que deseja conversar.</p>
+            </div><span class="step-arrow" aria-hidden="true">↗</span>
+          </li>
+          <li class="journey-step reveal"><span class="step-number">02</span>
+            <div>
+              <h3>Consulte pelo WhatsApp</h3>
+              <p>Converse com a Viviane e consulte a disponibilidade.</p>
+            </div><span class="step-arrow" aria-hidden="true">↗</span>
+          </li>
+          <li class="journey-step reveal"><span class="step-number">03</span>
+            <div>
+              <h3>Venha ao estúdio</h3>
+              <p>Compareça na data e no horário confirmados com a profissional.</p>
+            </div><span class="step-arrow" aria-hidden="true">↗</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section studio-section" id="espaco" aria-labelledby="studio-title" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span></span> Um lugar para você</p>
+          <h2 id="studio-title">O espaço da <em>Viviane.</em></h2>
+        </div>
+        <p class="section-intro">Um ambiente preparado para receber você.</p>
+      </div>
+      <div class="studio-grid" id="studio-grid"></div>
+    </section>
+
+    <section class="section faq-section" id="duvidas" aria-labelledby="faq-title">
+      <div class="faq-intro reveal">
+        <p class="eyebrow"><span></span> Dúvidas frequentes</p>
+        <h2 id="faq-title">Vamos esclarecer?</h2>
+        <p>Não encontrou sua dúvida? Fale diretamente com a Viviane.</p>
+        <a class="text-link" data-whatsapp="general" href="#">Conversar pelo WhatsApp <span
+            aria-hidden="true">↗</span></a>
+      </div>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1"><span>Quais
+                serviços a Viviane oferece?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-answer" id="faq-answer-1" hidden>
+            <p>As modalidades são sobrancelhas, micropigmentação, depilação e tratamento de estrias. Consulte a Viviane
+              para conversar sobre cada atendimento.</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2"><span>Como
+                posso agendar?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-answer" id="faq-answer-2" hidden>
+            <p>Envie uma mensagem pelo WhatsApp para consultar disponibilidade. O horário é confirmado diretamente pela
+              profissional.</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <h3><button class="faq-question" type="button" aria-expanded="false"
+              aria-controls="faq-answer-3"><span>Preciso marcar horário?</span><span class="faq-plus"
+                aria-hidden="true">+</span></button></h3>
+          <div class="faq-answer" id="faq-answer-3" hidden>
+            <p>Sim. O atendimento é realizado com hora marcada. Entre em contato para consultar a disponibilidade.</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4"><span>Onde
+                fica o estúdio?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3>
+          <div class="faq-answer" id="faq-answer-4" hidden>
+            <p>O estúdio fica no Loteamento Vila Rica, Qd. U1, nº 63, Rio Largo – AL, CEP 57100-000. Use o link do mapa
+              para planejar sua rota.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section location-section" id="localizacao" aria-labelledby="location-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow"><span></span> Nosso espaço & atendimento</p>
+          <h2 id="location-title">Seu cuidado começa <em>por aqui.</em></h2>
+        </div>
+        <p class="section-intro">Encontre a Viviane em Rio Largo e consulte a disponibilidade para sua visita.</p>
+      </div>
+      <div class="location-grid">
+        <article class="location-card appointment-card">
+          <p class="eyebrow eyebrow-light"><span></span> Atendimento</p>
+          <h3>Um momento reservado para você.</h3>
+          <p>Viviane Bispo Estética</p>
+          <div class="appointment-status"><span aria-hidden="true"></span> Atendimento com hora marcada</div>
+          <a class="button button-light" data-whatsapp="general" href="#">Consultar disponibilidade <span
+              aria-hidden="true">↗</span></a>
+        </article>
+        <article class="location-card address-card">
+          <p class="eyebrow"><span></span> Onde estamos</p>
+          <h3>Rio Largo, Alagoas</h3>
+          <address>Loteamento Vila Rica, Qd. U1, nº 63<br>Rio Largo – AL, CEP 57100-000</address>
+          <div class="map-art" aria-hidden="true"><span class="map-road road-one"></span><span
+              class="map-road road-two"></span><span class="map-pin">⌖</span><span class="map-label">Vila Rica · Rio
+              Largo</span></div>
+          <a class="text-link" id="maps-link" href="#" target="_blank" rel="noopener noreferrer">Como chegar <span
+              aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contato" aria-labelledby="contact-title">
+      <div class="contact-inner">
+        <div class="contact-heading reveal">
+          <p class="eyebrow eyebrow-light"><span></span> Vamos conversar</p>
+          <h2 id="contact-title">Sua jornada começa com uma <em>conversa.</em></h2>
+          <p>Conte como podemos ajudar. Sua mensagem será aberta no WhatsApp para você revisar e enviar.</p>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <label for="contact-name">Seu nome</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Como podemos chamar você?"
+            required>
+          <label for="contact-service">Modalidade de interesse</label>
+          <select id="contact-service" name="service" required>
+            <option value="" selected disabled>Selecione uma opção</option>
+            <option value="Sobrancelhas">Sobrancelhas</option>
+            <option value="Micropigmentação">Micropigmentação</option>
+            <option value="Depilação">Depilação</option>
+            <option value="Tratamento de estrias">Tratamento de estrias</option>
+            <option value="Quero conversar antes de escolher">Quero conversar antes de escolher</option>
+          </select>
+          <button class="button button-light form-submit" type="submit">Continuar no WhatsApp <span
+              aria-hidden="true">↗</span></button>
+          <p class="form-note" id="form-status" role="status">O horário só será confirmado pela profissional.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="#inicio" aria-label="Voltar ao início"><img src="src/logo_viviane_bispo_transparente.png"
+            alt="Viviane Bispo Estética"></a>
+        <p>Beleza, cuidado e atenção em Rio Largo, Alagoas.</p>
+      </div>
+      <div class="footer-column">
+        <h2>Navegue</h2><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#antes-depois">Antes e depois</a><a
+          href="#diferenciais">Diferenciais</a><a href="#depoimentos" data-optional-nav="depoimentos"
+          hidden>Depoimentos</a><a href="#espaco" data-optional-nav="espaco" hidden>O espaço</a><a
+          href="#atendimento">Atendimento</a><a href="#localizacao">Localização</a>
+      </div>
+      <div class="footer-column">
+        <h2>Modalidades</h2><a href="#servicos" data-service-link="sobrancelhas">Sobrancelhas</a><a href="#servicos"
+          data-service-link="micropigmentacao">Micropigmentação</a><a href="#servicos"
+          data-service-link="depilacao">Depilação</a><a href="#servicos" data-service-link="estrias">Tratamento de
+          estrias</a>
+      </div>
+      <div class="footer-column">
+        <h2>Contato</h2>
+        <p>Atendimento com hora marcada</p><a href="#" data-whatsapp="general">WhatsApp: <span
+            id="contact-display-phone">(82) 9142-4946</span></a><a class="instagram-link"
+          href="https://www.instagram.com/vivianebispo.designer/" target="_blank" rel="noopener noreferrer">Instagram
+          @vivianebispo.designer</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="current-year"></span> Viviane Bispo Estética</span><a
+        href="#topo">Voltar ao topo ↑</a></div>
+  </footer>
+
+  <dialog class="result-dialog" id="result-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-inner"><button class="dialog-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+      <h2 id="dialog-title" class="visually-hidden">Resultado ampliado</h2><img id="dialog-image" src="" alt="">
+    </div>
+  </dialog>
+
+  <dialog class="service-dialog" id="service-dialog" aria-labelledby="service-dialog-title">
+    <div class="service-dialog-inner">
+      <button class="service-dialog-close" type="button" aria-label="Fechar informações do procedimento">×</button>
+      <p class="eyebrow"><span></span> Procedimento</p>
+      <h2 id="service-dialog-title"></h2>
+      <p class="service-dialog-process" id="service-dialog-process"></p>
+      <dl class="service-dialog-details">
+        <div><dt>Para que serve</dt><dd id="service-dialog-purpose"></dd></div>
+        <div><dt>Como se preparar</dt><dd id="service-dialog-preparation"></dd></div>
+        <div><dt>Cuidados após</dt><dd id="service-dialog-care"></dd></div>
+      </dl>
+      <a class="button button-primary" id="service-dialog-book" href="#" data-whatsapp="service">Agendar procedimento <span aria-hidden="true">↗</span></a>
+    </div>
+  </dialog>
+</body>
+
+</html>
