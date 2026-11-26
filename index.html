@@ -74,17 +74,7 @@
             marcada</strong><small>atenção para você</small></span></div>
     </section>
 
-    <section class="emotional-banner" aria-label="Mensagem de inspiração">
-      <picture>
-        <source media="(max-width: 640px)" srcset="src/parallax-mobile.png">
-        <img src="src/efeito-parallax.webp" alt="" loading="eager" decoding="async" fetchpriority="high" width="1983" height="793">
-      </picture>
-      <div class="emotional-banner-overlay" aria-hidden="true"></div>
-      <div class="emotional-banner-content reveal">
-        <p class="eyebrow eyebrow-light"><span></span> Realce, não transformação</p>
-        <blockquote>Realce a sua<br><em>beleza natural.</em></blockquote>
-      </div>
-    </section>
+    
 
     <section class="section services-section" id="servicos" aria-labelledby="services-title">
       <div class="section-heading reveal">
@@ -130,34 +120,6 @@
       <p class="section-footnote">Os resultados correspondem às imagens reais disponíveis neste portfólio.</p>
     </section>
 
-    <section class="section differences-section" id="diferenciais" aria-labelledby="differences-title">
-      <div class="section-heading reveal">
-        <div>
-          <p class="eyebrow eyebrow-light"><span></span> O que faz a diferença</p>
-          <h2 id="differences-title">Cuidado em cada <em>detalhe.</em></h2>
-        </div>
-        <p class="section-intro">Uma experiência pensada para acolher suas escolhas, respeitar seu tempo e cuidar de
-          cada etapa.</p>
-      </div>
-      <div class="difference-grid">
-        <article class="difference-card reveal">
-          <span class="difference-number">01</span><span class="difference-icon" aria-hidden="true">✳</span>
-          <h3>Experiência que escuta</h3>
-          <p>Mais de uma década de atuação, com atenção ao que combina com você.</p>
-        </article>
-        <article class="difference-card reveal">
-          <span class="difference-number">02</span><span class="difference-icon" aria-hidden="true">◇</span>
-          <h3>Escolhas com calma</h3>
-          <p>Quatro modalidades para conversar sobre cuidados de sobrancelhas e pele.</p>
-        </article>
-        <article class="difference-card reveal">
-          <span class="difference-number">03</span><span class="difference-icon" aria-hidden="true">◷</span>
-          <h3>Um tempo só seu</h3>
-          <p>O agendamento prévio ajuda a preparar um atendimento com atenção.</p>
-        </article>
-      </div>
-    </section>
-
     <section class="section testimonials-section" id="depoimentos" aria-labelledby="testimonials-title" hidden>
       <div class="section-heading">
         <div>
@@ -169,33 +131,70 @@
       <div class="testimonial-content" id="testimonial-content"></div>
     </section>
 
-    <section class="journey-section" id="atendimento" aria-labelledby="journey-title">
-      <div class="journey-inner">
-        <div class="journey-heading reveal">
-          <p class="eyebrow"><span></span> Sua experiência</p>
-          <h2 id="journey-title">Uma jornada simples, do primeiro contato ao <em>encontro.</em></h2>
-          <p>Você escolhe o que deseja conhecer. A conversa acontece no seu tempo.</p>
+    <section class="emotional-banner" aria-label="Mensagem de inspiração">
+      <picture>
+        <source media="(max-width: 640px)" srcset="src/parallax-mobile.png">
+        <img src="src/efeito-parallax.webp" alt="" loading="eager" decoding="async" fetchpriority="high" width="1983" height="793">
+      </picture>
+      <div class="emotional-banner-overlay" aria-hidden="true"></div>
+      <div class="emotional-banner-content reveal">
+        <p class="eyebrow eyebrow-light"><span></span> Realce, não transformação</p>
+        <blockquote>Realce a sua<br><em>beleza natural.</em></blockquote>
+      </div>
+    </section>
+
+    <section class="cinematic-journey" id="atendimento" aria-labelledby="journey-title">
+      <div class="journey-shell">
+        <header class="journey-header">
+          <p class="journey-eyebrow">Sua experiência</p>
+          <h2 id="journey-title">Sua jornada de beleza.</h2>
+          <p>Cada detalhe pensado para você.</p>
+        </header>
+        <div class="journey-timeline">
+          <svg class="journey-track" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"
+            focusable="false">
+            <path class="journey-path-glow"
+              d="M 500 0 C 500 80 410 96 460 166.667 C 500 265 575 388 530 500 C 490 620 435 728 480 833.333 C 495 910 500 960 500 1000" />
+            <path class="journey-path-base"
+              d="M 500 0 C 500 80 410 96 460 166.667 C 500 265 575 388 530 500 C 490 620 435 728 480 833.333 C 495 910 500 960 500 1000" />
+            <path class="journey-path-active"
+              d="M 500 0 C 500 80 410 96 460 166.667 C 500 265 575 388 530 500 C 490 620 435 728 480 833.333 C 495 910 500 960 500 1000" />
+            <circle class="journey-light-halo" cx="500" cy="0" r="13" />
+            <circle class="journey-light-core" cx="500" cy="0" r="3.5" />
+          </svg>
+          <ol class="journey-chapters" aria-label="Etapas da sua experiência">
+            <li class="journey-chapter" data-side="left" data-path-point="460,166.667">
+              <span class="journey-chapter-number" aria-hidden="true">01</span>
+              <span class="journey-marker" aria-hidden="true"></span>
+              <div class="journey-copy">
+                <p class="journey-kicker">Capítulo 01</p>
+                <h3>O primeiro passo.</h3>
+                <p>Descubra o cuidado que combina com a sua beleza.</p>
+              </div>
+            </li>
+            <li class="journey-chapter" data-side="right" data-path-point="530,500">
+              <span class="journey-chapter-number" aria-hidden="true">02</span>
+              <span class="journey-marker" aria-hidden="true"></span>
+              <div class="journey-copy">
+                <p class="journey-kicker">Capítulo 02</p>
+                <h3>Uma conexão.</h3>
+                <p>Converse com a Viviane e reserve seu momento.</p>
+              </div>
+            </li>
+            <li class="journey-chapter" data-side="left" data-path-point="480,833.333">
+              <span class="journey-chapter-number" aria-hidden="true">03</span>
+              <span class="journey-marker" aria-hidden="true"></span>
+              <div class="journey-copy">
+                <p class="journey-kicker">Capítulo 03</p>
+                <h3>Um momento seu.</h3>
+                <p>Viva sua experiência de cuidado em um ambiente acolhedor.</p>
+              </div>
+            </li>
+          </ol>
+          <a class="journey-cta" data-whatsapp="general" href="#">
+            Inicie sua jornada <span aria-hidden="true">↗</span>
+          </a>
         </div>
-        <ol class="journey-list">
-          <li class="journey-step reveal"><span class="step-number">01</span>
-            <div>
-              <h3>Escolha uma modalidade</h3>
-              <p>Conheça os serviços e escolha o que deseja conversar.</p>
-            </div><span class="step-arrow" aria-hidden="true">↗</span>
-          </li>
-          <li class="journey-step reveal"><span class="step-number">02</span>
-            <div>
-              <h3>Consulte pelo WhatsApp</h3>
-              <p>Converse com a Viviane e consulte a disponibilidade.</p>
-            </div><span class="step-arrow" aria-hidden="true">↗</span>
-          </li>
-          <li class="journey-step reveal"><span class="step-number">03</span>
-            <div>
-              <h3>Venha ao estúdio</h3>
-              <p>Compareça na data e no horário confirmados com a profissional.</p>
-            </div><span class="step-arrow" aria-hidden="true">↗</span>
-          </li>
-        </ol>
       </div>
     </section>
 

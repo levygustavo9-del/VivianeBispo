@@ -787,11 +787,6 @@ function initReveal() {
     item.dataset.reveal = "up";
     item.style.setProperty("--reveal-delay", `${index * CINEMATIC_CONFIG.stagger}ms`);
   });
-  document.querySelectorAll(".journey-heading, .journey-step").forEach((item, index) => {
-    item.classList.add("reveal");
-    item.dataset.reveal = "up";
-    item.style.setProperty("--reveal-delay", `${index * CINEMATIC_CONFIG.stagger}ms`);
-  });
   document.querySelectorAll(".contact-heading").forEach((item) => {
     item.classList.add("reveal");
     item.dataset.reveal = "left";
@@ -833,15 +828,224 @@ function initScrollProgress() {
 }
 
 function initJourney() {
-  const steps = document.querySelectorAll(".journey-step");
-  if (!("IntersectionObserver" in window)) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add("is-active");
-      else entry.target.classList.remove("is-active");
+  const section = document.querySelector(".cinematic-journey");
+  if (!section) return;
+
+  const timeline = section.querySelector(".journey-timeline");
+  const track = section.querySelector(".journey-track");
+  const activePath = section.querySelector(".journey-path-active");
+  const chapterList = section.querySelector(".journey-chapters");
+  const lightHalo = section.querySelector(".journey-light-halo");
+  const lightCore = section.querySelector(".journey-light-core");
+  const cta = section.querySelector(".journey-cta");
+  const chapters = [...section.querySelectorAll(".journey-chapter")];
+  if (!timeline || !track || !activePath || !chapterList || !lightHalo || !lightCore) return;
+
+  const pathLength = activePath.getTotalLength();
+  const viewBoxSize = 1000;
+  const pathSegments = 512;
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const pathPoints = Array.from({ length: pathSegments + 1 }, (_, index) =>
+    activePath.getPointAtLength(pathLength * index / pathSegments)
+  );
+  activePath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+  const getPointAtProgress = (progress) => {
+    const scaledProgress = clamp(progress, 0, 1) * pathSegments;
+    const index = Math.min(Math.floor(scaledProgress), pathSegments - 1);
+    const fraction = scaledProgress - index;
+    const from = pathPoints[index];
+    const to = pathPoints[index + 1];
+    return {
+      x: from.x + (to.x - from.x) * fraction,
+      y: from.y + (to.y - from.y) * fraction
+    };
+  };
+
+  const findProgress = (x, y) => {
+    let nearestLength = 0;
+    let nearestDistance = Infinity;
+    for (let index = 0; index <= pathSegments; index += 1) {
+      const length = pathLength * index / pathSegments;
+      const point = pathPoints[index];
+      const distance = (point.x - x) ** 2 + (point.y - y) ** 2;
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestLength = length;
+      }
+    }
+    return nearestLength / pathLength;
+  };
+  const revealWindows = [
+    { start: .18, end: .27 },
+    { start: .49, end: .58 },
+    { start: .79, end: .88 }
+  ];
+  const chapterStates = chapters.map((chapter, index) => {
+    const [x, y] = chapter.dataset.pathPoint.split(",").map(Number);
+    const progress = findProgress(x, y);
+    const revealWindow = revealWindows[index];
+    return {
+      chapter,
+      copy: chapter.querySelector(".journey-copy"),
+      number: chapter.querySelector(".journey-chapter-number"),
+      marker: chapter.querySelector(".journey-marker"),
+      direction: chapter.dataset.side === "left" ? -1 : 1,
+      progress,
+      start: Math.min(revealWindow.start, progress),
+      end: Math.max(revealWindow.end, progress)
+    };
+  });
+
+  let sectionTop = 0;
+  let sectionHeight = 0;
+  let trackTop = 0;
+  let trackLeft = 0;
+  let trackWidth = 0;
+  let trackHeight = 0;
+  let viewportHeight = window.innerHeight;
+  let frameRequested = false;
+  let currentProgress = 0;
+  let targetProgress = 0;
+  let horizontalOffset = 24;
+  let isMobile = false;
+  let mobileLineSvgX = 0;
+  let mobileLineStartY = 0;
+  let mobileLineEndY = 0;
+  let mobileLineProgress = 0;
+
+  const refreshGeometry = () => {
+    const sectionRect = section.getBoundingClientRect();
+    const trackRect = track.getBoundingClientRect();
+    sectionTop = sectionRect.top + window.scrollY;
+    sectionHeight = sectionRect.height;
+    trackTop = trackRect.top + window.scrollY;
+    trackLeft = trackRect.left + window.scrollX;
+    trackWidth = trackRect.width;
+    trackHeight = trackRect.height;
+    viewportHeight = window.innerHeight;
+    isMobile = window.matchMedia("(max-width: 760px)").matches;
+    horizontalOffset = isMobile ? 14 : 24;
+    const chapterListRect = chapterList.getBoundingClientRect();
+    const mobileLineRatio = isMobile
+      ? Number.parseFloat(getComputedStyle(chapterList).getPropertyValue("--journey-mobile-line-x")) / 100
+      : 0;
+    const mobileLineX = chapterListRect.left + chapterListRect.width * mobileLineRatio;
+
+    chapterStates.forEach(({ chapter, marker, progress }) => {
+      const point = getPointAtProgress(progress);
+      const chapterRect = chapter.getBoundingClientRect();
+      const x = isMobile
+        ? mobileLineX - chapterRect.left
+        : trackRect.left - chapterRect.left + point.x / viewBoxSize * trackRect.width;
+      const y = trackRect.top - chapterRect.top + point.y / viewBoxSize * trackRect.height;
+      marker.style.left = `${x}px`;
+      marker.style.top = `${y}px`;
     });
-  }, { threshold: .65 });
-  steps.forEach((step) => observer.observe(step));
+
+    if (isMobile && chapterStates.length > 1 && trackWidth && trackHeight) {
+      const firstMarkerRect = chapterStates[0].marker.getBoundingClientRect();
+      const lastMarkerRect = chapterStates[chapterStates.length - 1].marker.getBoundingClientRect();
+      mobileLineSvgX = (mobileLineX - trackRect.left) / trackWidth * viewBoxSize;
+      mobileLineStartY = (firstMarkerRect.top + firstMarkerRect.height / 2 - trackRect.top) / trackHeight * viewBoxSize;
+      mobileLineEndY = (lastMarkerRect.top + lastMarkerRect.height / 2 - trackRect.top) / trackHeight * viewBoxSize;
+    }
+  };
+
+  const getScrollProgress = () => {
+    const start = sectionTop - viewportHeight * .82;
+    const end = sectionTop + sectionHeight - viewportHeight;
+    return clamp((window.scrollY - start) / (end - start), 0, 1);
+  };
+
+  const renderTimeline = (progress) => {
+    if (isMobile && chapterStates.length > 1) {
+      const firstMarkerProgress = chapterStates[0].progress;
+      const lastMarkerProgress = chapterStates[chapterStates.length - 1].progress;
+      mobileLineProgress = clamp(
+        (progress - firstMarkerProgress) / (lastMarkerProgress - firstMarkerProgress),
+        0,
+        1
+      );
+      chapterList.style.setProperty("--journey-mobile-progress", `${mobileLineProgress}`);
+    }
+
+    const dashOffset = pathLength * (1 - progress);
+    if (!isMobile) {
+      activePath.style.strokeDashoffset = `${dashOffset}`;
+    }
+
+    const lightPoint = isMobile
+      ? {
+          x: mobileLineSvgX,
+          y: mobileLineStartY + (mobileLineEndY - mobileLineStartY) * mobileLineProgress
+        }
+      : getPointAtProgress(progress);
+    lightHalo.setAttribute("cx", `${lightPoint.x}`);
+    lightHalo.setAttribute("cy", `${lightPoint.y}`);
+    lightCore.setAttribute("cx", `${lightPoint.x}`);
+    lightCore.setAttribute("cy", `${lightPoint.y}`);
+
+    chapterStates.forEach(({ chapter, copy, number, marker, direction, start, end }) => {
+      const reveal = clamp((progress - start) / (end - start), 0, 1);
+      chapter.style.setProperty("--chapter-reveal", `${reveal}`);
+      copy.style.opacity = `${reveal}`;
+      copy.style.transform = `translate3d(${direction * (1 - reveal) * horizontalOffset}px, 0, 0)`;
+      number.style.opacity = `${reveal}`;
+      marker.style.setProperty("--marker-ring-opacity", `${.3 + reveal * .22}`);
+      marker.style.setProperty("--marker-core-opacity", `${.72 + reveal * .28}`);
+    });
+
+    const ctaReveal = clamp((progress - .91) / .09, 0, 1);
+    if (cta) {
+      cta.style.opacity = `${ctaReveal}`;
+      cta.style.transform = `translate3d(0, ${(1 - ctaReveal) * 14}px, 0)`;
+      const visibility = ctaReveal > 0 ? "visible" : "hidden";
+      if (cta.style.visibility !== visibility) {
+        cta.style.visibility = visibility;
+        cta.style.pointerEvents = ctaReveal > 0 ? "auto" : "none";
+      }
+    }
+  };
+
+  const animateTimeline = () => {
+    const difference = targetProgress - currentProgress;
+    if (Math.abs(difference) < .001) {
+      currentProgress = targetProgress;
+      renderTimeline(currentProgress);
+      frameRequested = false;
+      return;
+    }
+    currentProgress += difference * .14;
+    renderTimeline(currentProgress);
+    window.requestAnimationFrame(animateTimeline);
+  };
+
+  const requestUpdate = () => {
+    targetProgress = getScrollProgress();
+    if (frameRequested) return;
+    frameRequested = true;
+    window.requestAnimationFrame(animateTimeline);
+  };
+
+  refreshGeometry();
+  section.classList.add("is-enhanced");
+  targetProgress = getScrollProgress();
+  currentProgress = targetProgress;
+  renderTimeline(currentProgress);
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", () => {
+    refreshGeometry();
+    requestUpdate();
+  }, { passive: true });
+  if ("ResizeObserver" in window) {
+    const resizeObserver = new ResizeObserver(() => {
+      refreshGeometry();
+      requestUpdate();
+    });
+    resizeObserver.observe(section);
+    resizeObserver.observe(timeline);
+  }
+  requestUpdate();
 }
 
 function initEmotionalBannerParallax() {
